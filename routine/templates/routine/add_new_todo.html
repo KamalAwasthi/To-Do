@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>My To-Do List</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </head>
+    <body class="container" style="margin-top:2em;">
+    	<div class="alert alert-primary" role="alert">
+    	<h1>My To-Do List</h1>
+    	</div>
+    		<div style="width: 50%;">
+  <!--   			       <form action="/add_new" method="post">
+    			        {% csrf_token %}
+    			        <p>
+    			            <input type="text" name="add_new" value="Add New To-Do" id="add_new" onfocus="if(this.value  == 'Add New To-Do') { this.value = ''; } " onblur="if(this.value == '') { this.value = 'Add New To-Do'; } ">
+    			            <input type="submit" value="Add" class="btn btn-success"/>
+    			</p>
+    			</form> -->
+                <form method="POST" class="post-form">{% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="save btn btn-default">Save</button>
+                </form>
+    			<br><br><br>
+			</div>
+
+        <h3> Today's To-Do List</h3>
+
+    			<table style="width:100%" class="table table-striped" >
+    			<tr>
+    			<th class="cell" style="padding-left: 4em;">Todo</th>
+    			<th class="cell">Date of Creation</th>
+    			</tr>
+    			{% for c in todos %}
+    			<tr>
+    			<td class="cell" style="padding-left: 4em;">
+				{{c.task}}
+    			</td>
+    			<td class="cell">
+    			    {{c.created_date}}
+    			</td>
+    			</tr>
+    			<!-- i = i+1 -->
+    			{% endfor %}	
+				
+		</div>
+    </body>
+</html>
